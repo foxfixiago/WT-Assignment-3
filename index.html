@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense Tracker – Node.js Server-Side Validation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Expense Tracker</h1>
+  <p>Node.js + Express app. Every entry is validated on the server before it is saved.</p>
+</header>
+
+<main>
+  <section aria-labelledby="addH">
+    <h2 id="addH">Add expense</h2>
+    <form id="form" novalidate>
+      <label for="title">Title</label>
+      <input id="title" placeholder="e.g. Metro card recharge">
+      <div class="err" id="e-title"></div>
+
+      <label for="amount">Amount (₹)</label>
+      <input id="amount" type="text" inputmode="decimal" placeholder="e.g. 250.50">
+      <div class="err" id="e-amount"></div>
+
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="">Select…</option>
+        <option>Food</option><option>Travel</option><option>Study</option><option>Bills</option><option>Other</option>
+      </select>
+      <div class="err" id="e-category"></div>
+
+      <label for="date">Date</label>
+      <input id="date" type="date">
+      <div class="err" id="e-date"></div>
+
+      <button type="submit">Save expense</button>
+      <div id="banner" role="status"></div>
+    </form>
+  </section>
+
+  <section aria-labelledby="listH">
+    <h2 id="listH">Your expenses</h2>
+    <div class="stats">
+      <div class="stat"><b id="s-total">₹0</b><span>Total spent</span></div>
+      <div class="stat"><b id="s-count">0</b><span>Entries</span></div>
+      <div class="stat"><b id="s-top">–</b><span>Top category</span></div>
+    </div>
+    <div class="tools">
+      <input id="search" placeholder="Search title…" aria-label="Search">
+      <select id="filter" aria-label="Filter category"><option value="">All categories</option><option>Food</option><option>Travel</option><option>Study</option><option>Bills</option><option>Other</option></select>
+      <select id="sort" aria-label="Sort">
+        <option value="date-desc">Newest first</option><option value="date-asc">Oldest first</option>
+        <option value="amt-desc">Amount: high → low</option><option value="amt-asc">Amount: low → high</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Title</th><th>Category</th><th>Date</th><th class="amt">Amount</th><th></th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="empty" hidden>No expenses match. Add one or clear the filters.</div>
+  </section>
+
+  <section class="wide">
+    <h2>Stored data (JSON array)</h2>
+    <pre id="json"></pre>
+    <div class="row">
+      <button class="ghost" id="copy">Copy JSON</button>
+      <button class="ghost" id="download">Download .json</button>
+      <button class="ghost" id="clear">Clear all</button>
+    </div>
+    <label for="import">Import JSON</label>
+    <textarea id="import" placeholder='[{"title":"Chai","amount":20,"category":"Food","date":"2026-10-18"}]'></textarea>
+    <div class="err" id="e-import"></div>
+    <button class="ghost" id="importBtn">Import (validated)</button>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
