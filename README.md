@@ -4,8 +4,8 @@ A web application built with **Node.js and Express** that demonstrates **server-
 The browser only sends raw input. The server validates every request, rejects bad data with HTTP 400 and
 field-wise error messages, and stores accepted data in a JSON file.
 
-**Course:** 2304362L-SV26-27 | **Assignment:** 3 | **Student:** Om Gupta (PRN: ________)
-**Live URL:** (add your deployed link here)
+**Course:** 2304362L-SV26-27 | **Assignment:** 3 | **Student:** Om Kumar Gupta (PRN: 202401040206)
+**Live URL:** (https://wt-assignment-3.onrender.com/)
 
 ## Why this is server-side validation
 
